@@ -6,7 +6,7 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String email;
-    private boolean role;
+    private UserRole userRole;
 
 
 
@@ -14,14 +14,24 @@ public class Employee {
 
     }
 
-    public Employee(int empolyeeId, String password, String firstName, String lastName, String email, boolean role) {
+
+    public Employee(int empolyeeId, String password, String firstName, String lastName, String email, UserRole userRole) {
         this.empolyeeId = empolyeeId;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.role = role;
+        this.userRole = userRole;
     }
+
+    public Employee(int empolyeeId, String password, String firstName, String lastName, String email) {
+        this.empolyeeId = empolyeeId;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
 
     public int getEmpolyeeId() {
         return empolyeeId;
@@ -63,11 +73,23 @@ public class Employee {
         this.email = email;
     }
 
-    public boolean isRole() {
-        return role;
+    public UserRole getUserRole() {
+        return userRole;
     }
 
-    public void setRole(boolean role) {
-        this.role = role;
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Employee{" +
+                "empolyeeId=" + empolyeeId +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", userRole=" + userRole +
+                '}';
     }
 }

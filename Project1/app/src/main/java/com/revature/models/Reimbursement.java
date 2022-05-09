@@ -7,20 +7,32 @@ public class Reimbursement {
     private Date submittedDate;
     private Date resolvedDate;
     private String description;
-    private int reimbursementAuthor;
-    private int reimbursementResolver;
+    private Employee reimbursementAuthor;
+    private Employee reimbursementResolver;
+    private ReimbursementStatus reimbursementStatus;
+    private ReimbursementType reimbursementType;
 
     public Reimbursement(){
 
     }
 
-    public Reimbursement(double amount, Date submittedDate, Date resolvedDate, String description, int reimbursementAuthor, int reimbursementResolver) {
+
+    public Reimbursement(double amount, Date submittedDate, Date resolvedDate, String description, Employee reimbursementAuthor, Employee reimbursementResolver, ReimbursementStatus reimbursementStatus, ReimbursementType reimbursementType) {
         this.amount = amount;
         this.submittedDate = submittedDate;
         this.resolvedDate = resolvedDate;
         this.description = description;
         this.reimbursementAuthor = reimbursementAuthor;
         this.reimbursementResolver = reimbursementResolver;
+        this.reimbursementStatus = reimbursementStatus;
+        this.reimbursementType = reimbursementType;
+    }
+
+    public Reimbursement(double amount, Date submittedDate, Date resolvedDate, String description) {
+        this.amount = amount;
+        this.submittedDate = submittedDate;
+        this.resolvedDate = resolvedDate;
+        this.description = description;
     }
 
     public double getAmount() {
@@ -55,19 +67,49 @@ public class Reimbursement {
         this.description = description;
     }
 
-    public int getReimbursementAuthor() {
+    public Employee getReimbursementAuthor() {
         return reimbursementAuthor;
     }
 
-    public void setReimbursementAuthor(int reimbursementAuthor) {
+    public void setReimbursementAuthor(Employee reimbursementAuthor) {
         this.reimbursementAuthor = reimbursementAuthor;
     }
 
-    public int getReimbursementResolver() {
+    public Employee getReimbursementResolver() {
         return reimbursementResolver;
     }
 
-    public void setReimbursementResolver(int reimbursementResolver) {
+    public void setReimbursementResolver(Employee reimbursementResolver) {
         this.reimbursementResolver = reimbursementResolver;
+    }
+
+    public ReimbursementStatus getReimbursementStatus() {
+        return reimbursementStatus;
+    }
+
+    public void setReimbursementStatus(ReimbursementStatus reimbursementStatus) {
+        this.reimbursementStatus = reimbursementStatus;
+    }
+
+    public ReimbursementType getReimbursementType() {
+        return reimbursementType;
+    }
+
+    public void setReimbursementType(ReimbursementType reimbursementType) {
+        this.reimbursementType = reimbursementType;
+    }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Reimbursement{" +
+                "amount=" + amount +
+                ", submittedDate=" + submittedDate +
+                ", resolvedDate=" + resolvedDate +
+                ", description='" + description + '\'' +
+                ", reimbursementAuthor=" + reimbursementAuthor +
+                ", reimbursementResolver=" + reimbursementResolver +
+                ", reimbursementStatus=" + reimbursementStatus +
+                ", reimbursementType=" + reimbursementType +
+                '}';
     }
 }
