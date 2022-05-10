@@ -5,22 +5,23 @@ password varchar(64),
 first_name varchar(64),
 last_name varchar(64),
 email varchar(100),
-foreign key (employee_id) references user_roles(role_id)
+user_role int  references user_roles(role_id)
 );
+
 
 create table if not exists reimbursement (
 reimbursement_id int primary key not null,
 amount float,
 submitted_date date,
 resolved_date date,
-description varchar(300)
+description varchar(300),
+reimbursement_author int references employee(employee_id) not null,
+reimbursement_resolver int references employee(employee_id),
+reimbursement_status int references reimbursement_status(status_id),
+reimbursement_type int references reimbursement_type(type_id)
 );
 
-alter table reimbursement add column reimbursement_author int;
-reimbursement_author references employee(employee_id) not null;
-add  key (reimbursement_resolver) references employee(employee_id),
-add  key (reimbursement_status) references reimbursement_status(status_id),
-add  key (reimbursement_type) references reimbursement_type(type_id);
+
 /*the reimbursement table must reference the users table*/
 
 create table if not exists reimbursement_status (
