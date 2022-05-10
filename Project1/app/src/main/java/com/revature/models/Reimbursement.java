@@ -35,6 +35,14 @@ public class Reimbursement {
         this.description = description;
     }
 
+    public Reimbursement(double amount, Date submittedDate, Date resolvedDate, String description, Employee reimbursementAuthor) {
+        this.amount = amount;
+        this.submittedDate = submittedDate;
+        this.resolvedDate = resolvedDate;
+        this.description = description;
+        this.reimbursementAuthor = reimbursementAuthor;
+    }
+
     public double getAmount() {
         return amount;
     }

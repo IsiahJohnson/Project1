@@ -13,7 +13,7 @@ public class EmployeeDao implements IEmployeeDao {
 
         Connection c = cs.getConnection();
 
-        String sql = "insert into employees (first_name, last_name, email, password, user_role) values " +
+        String sql = "insert into employees (first_name, last_name, email, password, user_roles) values " +
                 "('" + u.getFirstName() + "','" + u.getLastName() + "','" + u.getEmail() + "','" + u.getPassword() + "','" + u.getRole() + "')";
 
         try {
@@ -64,7 +64,7 @@ public class EmployeeDao implements IEmployeeDao {
                 "email = ?, " + //index 3
                 "password = ? " + //index 4s
                 "WHERE employee_id = ?" + //index 5
-                "user_role = ?"; //index 6
+                "user_roles = ?"; //index 6
 
         try{
             PreparedStatement p = c.prepareStatement(sql);
