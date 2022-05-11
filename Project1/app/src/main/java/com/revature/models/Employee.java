@@ -6,7 +6,7 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String email;
-    private UserRole userRole;
+    private int userRole;
 
 
 
@@ -15,7 +15,7 @@ public class Employee {
     }
 
 
-    public Employee(int empolyeeId, String password, String firstName, String lastName, String email, UserRole userRole) {
+    public Employee(int empolyeeId, String password, String firstName, String lastName, String email, int userRole) {
         this.empolyeeId = empolyeeId;
         this.password = password;
         this.firstName = firstName;
@@ -73,11 +73,11 @@ public class Employee {
         this.email = email;
     }
 
-    public UserRole getUserRole() {
+    public int getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(UserRole userRole) {
+    public void setUserRole(int userRole) {
         this.userRole = userRole;
     }
 

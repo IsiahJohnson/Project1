@@ -1,20 +1,22 @@
 package com.revature.dao;
 
-import com.example.models.Employee;
-import com.example.utils.ConnectionSingleton;
+import com.revature.models.Employee;
+import com.revature.utils.ConnectionSingleton;
 
+import java.sql.*;
+import java.util.List;
 
 
 public class EmployeeDao implements IEmployeeDao {
     public ConnectionSingleton cs = ConnectionSingleton.getConnectionSingleton();
 
     @Override
-    public void createEmployee(Employee e) {
+    public void createEmployee(Employee em) {
 
         Connection c = cs.getConnection();
 
         String sql = "insert into employees (first_name, last_name, email, password, user_roles) values " +
-                "('" + u.getFirstName() + "','" + u.getLastName() + "','" + u.getEmail() + "','" + u.getPassword() + "','" + u.getRole() + "')";
+                "('" + em.getFirstName() + "','" + em.getLastName() + "','" + em.getEmail() + "','" + em.getPassword() + "','" + em.getUserRole() + "')";
 
         try {
             Statement s = c.createStatement();
@@ -26,7 +28,7 @@ public class EmployeeDao implements IEmployeeDao {
     }
 
     @Override
-    public List<Employee> readAllEmployee() {
+    public List<Employee> readAllEmployees() {
         return null;
     }
 
@@ -55,7 +57,7 @@ public class EmployeeDao implements IEmployeeDao {
     }
 
     @Override
-    public Employee updateEmployee(Employee e) {
+    public Employee updateEmployee(Employee em) {
 
         Connection c = cs.getConnection();
         String sql = "UPDATE employee " +
@@ -69,16 +71,16 @@ public class EmployeeDao implements IEmployeeDao {
         try{
             PreparedStatement p = c.prepareStatement(sql);
 
-            p.setString(1, u.getFirstName());
-            p.setString(2, u.getLastName());
-            p.setString(3, u.getEmail());
-            p.setString(4, u.getPassword());
-            p.setInt(5, u.getEmployeeId());
-            p.setObject(6, u.getUserRole());
+            p.setString(1, em.getFirstName());
+            p.setString(2, em.getLastName());
+            p.setString(3, em.getEmail());
+            p.setString(4, em.getPassword());
+            p.setInt(5, em.getEmpolyeeId());
+            p.setInt(6, em.getUserRole());
 
             p.execute();
 
-            return u;
+            return em;
 
         } catch(SQLException e){
             e.printStackTrace();
@@ -87,7 +89,7 @@ public class EmployeeDao implements IEmployeeDao {
     }
 
     @Override
-    public void deleteEmployee(Employee e) {
+    public void deleteEmployee(Employee em) {
         Connection c = cs.getConnection();
 
         String sql = "DELETE FROM employee WHERE employee_id = ?";
@@ -95,7 +97,7 @@ public class EmployeeDao implements IEmployeeDao {
         try{
             PreparedStatement p = c.prepareStatement(sql);
 
-            p.setInt(1, u.getEmployeeId());
+            p.setInt(1, em.getEmpolyeeId());
 
             p.execute();
         }catch(SQLException e){
@@ -103,24 +105,6 @@ public class EmployeeDao implements IEmployeeDao {
         }
     }
 
-    @Override
-    public void insertFollowing(String role , int roleId) {
 
-        Connection c = cs.getConnection();
-        try{
-
-            String sql = "insert into user_roles values(?,?)";
-
-            PreparedStatement ps = c.prepareStatement(sql);
-
-            ps.setString(1, role);
-            ps.setInt(2, roleId);
-
-            ps.execute();
-
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
 
     }
-}

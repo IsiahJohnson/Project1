@@ -1,4 +1,5 @@
-package.com.revature.models;
+package com.revature.models;
+
 
 public class ReimbursementStatus{
         private boolean status;

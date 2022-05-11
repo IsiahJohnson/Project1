@@ -1,6 +1,6 @@
-package.com.revature.models;
+package com.revature.models;
 
-public class ReimbursementType(){
+public class ReimbursementType{
     private String type;
     private int typeId;
 

@@ -3,6 +3,8 @@ package com.revature.models;
 import java.util.Date;
 
 public class Reimbursement {
+
+    private int reimbursementId;
     private double amount;
     private Date submittedDate;
     private Date resolvedDate;
@@ -15,9 +17,24 @@ public class Reimbursement {
     public Reimbursement(){
 
     }
+    public Reimbursement(int reimbursementId, double amount, Date submittedDate, Date resolvedDate, String description, Employee reimbursementAuthor) {
+        this.reimbursementId = reimbursementId;
+        this.amount = amount;
+        this.submittedDate = submittedDate;
+        this.resolvedDate = resolvedDate;
+        this.description = description;
+        this.reimbursementAuthor = reimbursementAuthor;
+    }
 
-
-    public Reimbursement(double amount, Date submittedDate, Date resolvedDate, String description, Employee reimbursementAuthor, Employee reimbursementResolver, ReimbursementStatus reimbursementStatus, ReimbursementType reimbursementType) {
+    public Reimbursement(double amount, Date submittedDate, Date resolvedDate, String description, Employee reimbursementAuthor) {
+        this.amount = amount;
+        this.submittedDate = submittedDate;
+        this.resolvedDate = resolvedDate;
+        this.description = description;
+        this.reimbursementAuthor = reimbursementAuthor;
+    }
+    public Reimbursement(int reimbursementId, double amount, Date submittedDate, Date resolvedDate, String description, Employee reimbursementAuthor, Employee reimbursementResolver, ReimbursementStatus reimbursementStatus, ReimbursementType reimbursementType) {
+        this.reimbursementId = reimbursementId;
         this.amount = amount;
         this.submittedDate = submittedDate;
         this.resolvedDate = resolvedDate;
@@ -28,21 +45,13 @@ public class Reimbursement {
         this.reimbursementType = reimbursementType;
     }
 
-    public Reimbursement(double amount, Date submittedDate, Date resolvedDate, String description) {
-        this.amount = amount;
-        this.submittedDate = submittedDate;
-        this.resolvedDate = resolvedDate;
-        this.description = description;
+    public int getReimbursementId() {
+        return reimbursementId;
     }
 
-    public Reimbursement(double amount, Date submittedDate, Date resolvedDate, String description, Employee reimbursementAuthor) {
-        this.amount = amount;
-        this.submittedDate = submittedDate;
-        this.resolvedDate = resolvedDate;
-        this.description = description;
-        this.reimbursementAuthor = reimbursementAuthor;
+    public void setReimbursementId(int reimbursementId) {
+        this.reimbursementId = reimbursementId;
     }
-
     public double getAmount() {
         return amount;
     }

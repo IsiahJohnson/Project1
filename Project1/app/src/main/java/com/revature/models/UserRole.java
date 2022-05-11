@@ -1,6 +1,6 @@
-package.com.revature.models;
+package com.revature.models;
 
-public class UserRole(){
+public class UserRole{
     private String role;
     private int roleId;
 

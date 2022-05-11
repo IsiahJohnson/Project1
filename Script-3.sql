@@ -25,8 +25,8 @@ reimbursement_type int references reimbursement_type(type_id)
 /*the reimbursement table must reference the users table*/
 
 create table if not exists reimbursement_status (
-status_id int primary key not null,
-status boolean
+status_id int primary key not NULL unique,
+status varchar(15)
 );
 
 create table if not exists reimbursement_type (
@@ -35,8 +35,8 @@ type varchar(30)
 );
 
 create table if not exists user_roles (
-role_id int primary key not null,
-role varchar(20)
+role_id int primary key not NULL unique,
+role boolean
 );
 
 
@@ -44,3 +44,13 @@ role varchar(20)
 *we have created our main 5 tables, tables with "lu" in front are referenced as LOOKUP tables,
 *therefore, we need to create data into these 3 LOOKUP tables
 */
+
+INSERT INTO reimbursement_status (status_id, status)
+values(1, 'Approve'), (2, 'Decline'), (3, 'Pending');
+
+INSERT INTO reimbursement_type (type_id, type)
+values(1, 'LODGING'), (2, 'TRAVEL'), (3, 'FOOD'), (4, 'OTHER');
+
+- we use boolean TO determine our positon, 1 = manager, 2 = associate
+INSERT INTO user_roles (role_id, role) 
+values(1, true), (2, false);
