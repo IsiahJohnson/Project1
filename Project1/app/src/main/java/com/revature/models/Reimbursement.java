@@ -11,8 +11,8 @@ public class Reimbursement {
     private String description;
     private Employee reimbursementAuthor;
     private Employee reimbursementResolver;
-    private ReimbursementStatus reimbursementStatus;
-    private ReimbursementType reimbursementType;
+    private int reimbursementStatus;
+    private int reimbursementType;
 
     public Reimbursement(){
 
@@ -33,15 +33,20 @@ public class Reimbursement {
         this.description = description;
         this.reimbursementAuthor = reimbursementAuthor;
     }
-    public Reimbursement(int reimbursementId, double amount, Date submittedDate, Date resolvedDate, String description, Employee reimbursementAuthor, Employee reimbursementResolver, ReimbursementStatus reimbursementStatus, ReimbursementType reimbursementType) {
-        this.reimbursementId = reimbursementId;
+
+
+    public Reimbursement(double amount, Date submittedDate, String description, Employee reimbursementAuthor) {
         this.amount = amount;
         this.submittedDate = submittedDate;
-        this.resolvedDate = resolvedDate;
         this.description = description;
         this.reimbursementAuthor = reimbursementAuthor;
-        this.reimbursementResolver = reimbursementResolver;
-        this.reimbursementStatus = reimbursementStatus;
+    }
+
+    public Reimbursement(double amount, Date submittedDate, String description, Employee reimbursementAuthor, int reimbursementType) {
+        this.amount = amount;
+        this.submittedDate = submittedDate;
+        this.description = description;
+        this.reimbursementAuthor = reimbursementAuthor;
         this.reimbursementType = reimbursementType;
     }
 
@@ -100,19 +105,19 @@ public class Reimbursement {
         this.reimbursementResolver = reimbursementResolver;
     }
 
-    public ReimbursementStatus getReimbursementStatus() {
+    public int getReimbursementStatus() {
         return reimbursementStatus;
     }
 
-    public void setReimbursementStatus(ReimbursementStatus reimbursementStatus) {
+    public void setReimbursementStatus(int reimbursementStatus) {
         this.reimbursementStatus = reimbursementStatus;
     }
 
-    public ReimbursementType getReimbursementType() {
+    public int getReimbursementType() {
         return reimbursementType;
     }
 
-    public void setReimbursementType(ReimbursementType reimbursementType) {
+    public void setReimbursementType(int reimbursementType) {
         this.reimbursementType = reimbursementType;
     }
 

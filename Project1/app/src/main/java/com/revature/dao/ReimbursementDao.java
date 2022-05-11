@@ -16,12 +16,19 @@ public class ReimbursementDao implements IReimbursemnetDao {
     public void createReimbursement(Reimbursement r) {
         Connection c = cs.getConnection();
 
-        String sql = "insert into reimbursement (amount, submitted_date, description) values " +
-                "('" + r.getAmount() + "','" + r.getSubmittedDate() + "','"  + r.getDescription() + "')";
+        String sql = "insert into reimbursement (amount, submitted_date, description, reimbursement_author, reimbursement_type) values (?,?,?,?,?)";
 
         try {
-            Statement s = c.createStatement();
-            s.execute(sql);
+            PreparedStatement p = c.prepareStatement(sql);
+            p.execute(sql);
+
+            p.setDouble(1, r.getAmount());
+            p.setDate(2, (Date) r.getSubmittedDate());
+            p.setString(3, r.getDescription());
+            p.setInt(4, r.getReimbursementAuthor().getEmpolyeeId());
+            p.setInt(5, r.getReimbursementType() );
+
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -54,7 +61,7 @@ public class ReimbursementDao implements IReimbursemnetDao {
             List<Reimbursement> aList = new ArrayList<>();
 
             while(rs.next()){
-                Employee e = new Employee(rs.getInt(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9));
+                Employee e = new Employee(rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getInt(10));
 
                 Reimbursement r = new Reimbursement(rs.getDouble(1), rs.getDate(2), rs.getDate(3), rs.getString(4), e);
 

@@ -2,6 +2,8 @@ package com.revature.models;
 
 public class Employee {
     private int empolyeeId;
+
+    private String username;
     private String password;
     private String firstName;
     private String lastName;
@@ -14,9 +16,8 @@ public class Employee {
 
     }
 
-
-    public Employee(int empolyeeId, String password, String firstName, String lastName, String email, int userRole) {
-        this.empolyeeId = empolyeeId;
+    public Employee(String username, String password, String firstName, String lastName, String email, int userRole) {
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,14 +25,15 @@ public class Employee {
         this.userRole = userRole;
     }
 
-    public Employee(int empolyeeId, String password, String firstName, String lastName, String email) {
+    public Employee(int empolyeeId, String username, String password, String firstName, String lastName, String email, int userRole) {
         this.empolyeeId = empolyeeId;
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.userRole = userRole;
     }
-
 
     public int getEmpolyeeId() {
         return empolyeeId;
@@ -39,6 +41,14 @@ public class Employee {
 
     public void setEmpolyeeId(int empolyeeId) {
         this.empolyeeId = empolyeeId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
