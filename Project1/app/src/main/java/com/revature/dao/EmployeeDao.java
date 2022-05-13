@@ -45,7 +45,7 @@ public class EmployeeDao implements IEmployeeDao {
 
             Employee loggedIn = null;
             while (rs.next()) {
-                loggedIn = new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6));
+                loggedIn = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
             }
 
             return loggedIn;
