@@ -15,8 +15,8 @@ public class EmployeeDao implements IEmployeeDao {
 
         Connection c = cs.getConnection();
 
-        String sql = "insert into employees (first_name, last_name, email, password, user_roles) values " +
-                "('" + em.getFirstName() + "','" + em.getLastName() + "','" + em.getEmail() + "','" + em.getPassword() + "','" + em.getUserRole() + "')";
+        String sql = "insert into employee (username, first_name, last_name, email, password, user_role) values " +
+                "('"+ em.getUsername() + "','" + em.getFirstName() + "','" + em.getLastName() + "','" + em.getEmail() + "','" + em.getPassword() + "','" + em.getUserRole() + "')";
 
         try {
             Statement s = c.createStatement();
@@ -45,7 +45,7 @@ public class EmployeeDao implements IEmployeeDao {
 
             Employee loggedIn = null;
             while (rs.next()) {
-                loggedIn = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                loggedIn = new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6));
             }
 
             return loggedIn;
@@ -66,7 +66,7 @@ public class EmployeeDao implements IEmployeeDao {
                 "email = ?, " + //index 3
                 "password = ? " + //index 4s
                 "WHERE employee_id = ?" + //index 5
-                "user_roles = ?"; //index 6
+                "user_role = ?"; //index 6
 
         try{
             PreparedStatement p = c.prepareStatement(sql);
