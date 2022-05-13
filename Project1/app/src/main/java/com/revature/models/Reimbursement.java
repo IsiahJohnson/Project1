@@ -1,6 +1,6 @@
 package com.revature.models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Reimbursement {
 
@@ -17,13 +17,14 @@ public class Reimbursement {
     public Reimbursement(){
 
     }
-    public Reimbursement(int reimbursementId, double amount, Date submittedDate, Date resolvedDate, String description, Employee reimbursementAuthor) {
-        this.reimbursementId = reimbursementId;
+
+    public Reimbursement(double amount, Date submittedDate, String description, Employee reimbursementAuthor, int reimbursementStatus, int reimbursementType) {
         this.amount = amount;
         this.submittedDate = submittedDate;
-        this.resolvedDate = resolvedDate;
         this.description = description;
         this.reimbursementAuthor = reimbursementAuthor;
+        this.reimbursementStatus = reimbursementStatus;
+        this.reimbursementType = reimbursementType;
     }
 
     public Reimbursement(double amount, Date submittedDate, Date resolvedDate, String description, Employee reimbursementAuthor) {

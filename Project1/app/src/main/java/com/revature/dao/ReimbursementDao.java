@@ -16,17 +16,19 @@ public class ReimbursementDao implements IReimbursemnetDao {
     public void createReimbursement(Reimbursement r) {
         Connection c = cs.getConnection();
 
-        String sql = "insert into reimbursement (amount, submitted_date, description, reimbursement_author, reimbursement_type) values (?,?,?,?,?)";
+        String sql = "insert into reimbursement (amount, submitted_date, description, reimbursement_author, reimbursement_status, reimbursement_type) values (?,?,?,?,?,?)";
 
         try {
             PreparedStatement p = c.prepareStatement(sql);
-            p.execute(sql);
 
             p.setDouble(1, r.getAmount());
             p.setDate(2, (Date) r.getSubmittedDate());
             p.setString(3, r.getDescription());
             p.setInt(4, r.getReimbursementAuthor().getEmpolyeeId());
-            p.setInt(5, r.getReimbursementType() );
+            p.setInt(5, r.getReimbursementStatus());
+            p.setInt(6, r.getReimbursementType() );
+
+            p.execute();
 
 
         } catch (SQLException e) {
@@ -107,16 +109,18 @@ public class ReimbursementDao implements IReimbursemnetDao {
                 "submitted_date = ?, " + //index 2
                 "resolved_date = ?, " + //index 3
                 "description = ? " + //index 4s
-                "WHERE reimbursement_id = ?"; //index 5
+                "reimbursement_resolver = ?" + //index 5
+                "reimbursement_status = ?"; //index 6
 
         try{
             PreparedStatement p = c.prepareStatement(sql);
 
             p.setDouble(1, r.getAmount());
-            p.setDate(2, (Date) r.getSubmittedDate());
-            p.setDate(3, (Date) r.getResolvedDate());
+            p.setDate(2, r.getSubmittedDate());
+            p.setDate(3, r.getResolvedDate());
             p.setString(4, r.getDescription());
-            p.setInt(5, r.getReimbursementId());
+            p.setInt(5, r.getReimbursementResolver().getEmpolyeeId());
+            p.setInt(6, r.getReimbursementStatus());
 
             p.execute();
 

@@ -11,19 +11,25 @@ import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 public class ReimbursementDriver {
     public static void main(String[] args) throws ParseException {
         IEmployeeDao ed = new EmployeeDao();
         IReimbursemnetDao rd = new ReimbursementDao();
 
-        Employee e = new Employee(10,"username", "password", "firstName", "lastName", "email", 0);
-        ed.createEmployee(e);
+        Employee e = new Employee(2,"username", "password", "firstName", "lastName", "email", 1);
+        //ed.createEmployee(e);
 
         DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-        Date d1 = df.parse("2022-03-17");
-        Reimbursement r = new Reimbursement(500.57,d1, "FOOD", e, 3);
+        Date d1 = new Date(System.currentTimeMillis());
+        Reimbursement r = new Reimbursement(500.57,d1, "FOOD", e, 3, 3);
         rd.createReimbursement(r);
+        System.out.print(r.toString());
+        r.setReimbursementStatus(1);
+        r.setReimbursementResolver(e);
+        r.setResolvedDate(d1);
+        System.out.print(r.toString());
+        rd.updateReimbursement(r);
     }
 }
