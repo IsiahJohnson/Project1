@@ -35,11 +35,20 @@ public class Employee {
         this.userRole = userRole;
     }
 
-    public int getEmpolyeeId() {
+    public Employee(int empolyeeId, String username, String password, String firstName, String lastName, String email) {
+        this.empolyeeId = empolyeeId;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    public int getEmployeeId() {
         return empolyeeId;
     }
 
-    public void setEmpolyeeId(int empolyeeId) {
+    public void setEmployeeId(int empolyeeId) {
         this.empolyeeId = empolyeeId;
     }
 

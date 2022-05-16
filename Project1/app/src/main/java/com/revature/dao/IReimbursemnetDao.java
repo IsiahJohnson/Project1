@@ -14,10 +14,6 @@ public interface IReimbursemnetDao {
 
     public List<Reimbursement> readReimbursementByUser(int id);
 
-    public Reimbursement update();
-
-    public void deleteReimbursement(Reimbursement r);
-
 
     public Reimbursement updateReimbursement(Reimbursement r);
 }

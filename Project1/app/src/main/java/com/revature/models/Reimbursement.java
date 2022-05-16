@@ -18,6 +18,18 @@ public class Reimbursement {
 
     }
 
+    public Reimbursement(int reimbursementId, double amount, Date submittedDate, Date resolvedDate, String description, int reimbursementAuthor, int reimbursementResolver, int reimbursementStatus, int reimbursementType) {
+        this.reimbursementId = reimbursementId;
+        this.amount = amount;
+        this.submittedDate = submittedDate;
+        this.resolvedDate = resolvedDate;
+        this.description = description;
+        this.reimbursementAuthor = reimbursementAuthor;
+        this.reimbursementResolver = reimbursementResolver;
+        this.reimbursementStatus = reimbursementStatus;
+        this.reimbursementType = reimbursementType;
+    }
+
     public Reimbursement(double amount, Date submittedDate, String description, int reimbursementAuthor, int reimbursementStatus, int reimbursementType) {
         this.amount = amount;
         this.submittedDate = submittedDate;
@@ -123,9 +135,10 @@ public class Reimbursement {
     }
 
     @Override
-    public java.lang.String toString() {
+    public String toString() {
         return "Reimbursement{" +
-                "amount=" + amount +
+                "reimbursementId=" + reimbursementId +
+                ", amount=" + amount +
                 ", submittedDate=" + submittedDate +
                 ", resolvedDate=" + resolvedDate +
                 ", description='" + description + '\'' +
