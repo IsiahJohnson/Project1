@@ -37,7 +37,7 @@ public class EmployeeController {
         } else {
             //We could also, if the Employee is logged in successfully, setup a session for them
             ctx.req.getSession().setAttribute("loggedIn", e.getEmail());
-            ctx.req.getSession().setAttribute("id", ""+e.getEmployeeId());
+            ctx.req.getSession().setAttribute("id", ""+es.readEmployeeByEmail(lo.email).getEmployeeId());
             ctx.result(om.writeValueAsString(e));
         }
     };

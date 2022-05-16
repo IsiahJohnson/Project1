@@ -11,7 +11,7 @@ public class EmployeeService {
     }
 
     public void registerEmployee(String username, String password, String firstName, String lastName, String email){
-        Employee register = new Employee(0, username, password, firstName, lastName, email);
+        Employee register = new Employee(0, username, password, firstName, lastName, email, 2);
         ed.createEmployee(register);
     }
 
@@ -33,6 +33,10 @@ public class EmployeeService {
         return null;
     }
 
+    public Employee readEmployeeByEmail(String email){
+        return ed.readEmployeeByEmail(email);
+    }
+
     public Employee updateEmployeeInfo(Employee e){
         return ed.updateEmployee(e);
     }
@@ -40,6 +44,7 @@ public class EmployeeService {
     public void deleteEmployee(Employee e){
         ed.deleteEmployee(e);
     }
+
 
 
 }

@@ -1,5 +1,6 @@
 package com.revature;
 import com.revature.controllers.EmployeeController;
+import com.revature.controllers.ReimbursementController;
 import com.revature.dao.EmployeeDao;
 import com.revature.dao.IEmployeeDao;
 import com.revature.dao.IReimbursemnetDao;
@@ -7,6 +8,7 @@ import com.revature.dao.ReimbursementDao;
 import com.revature.models.Employee;
 import com.revature.models.Reimbursement;
 import com.revature.services.EmployeeService;
+import com.revature.services.ReimbursementService;
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
 
@@ -25,11 +27,12 @@ public class ReimbursementDriver {
         IReimbursemnetDao rd = new ReimbursementDao();
 
         EmployeeService es = new EmployeeService(ed);
+        ReimbursementService rs = new ReimbursementService(rd);
 
         EmployeeController ec = new EmployeeController(es);
+        ReimbursementController rc = new ReimbursementController(rs);
 
         Javalin server = Javalin.create(config -> {
-            config.addStaticFiles("/public", Location.CLASSPATH);
             config.enableCorsForAllOrigins();
         });
 
@@ -41,11 +44,12 @@ public class ReimbursementDriver {
                 delete("/{id}", ec.handleDeleteEmployee);
             });
             path("reimbursement", () -> {
-                //post("/", pc.handleCreatePost);
-                //get("/", pc.handleGetUserPosts);
+                post("/create", rc.handleCreate);
+                //get("/", rc.handleGetUserPosts);
             });
         });
 
+        server.start(8000);
 
 
 
