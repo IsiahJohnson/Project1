@@ -19,17 +19,17 @@ public class ReimbursementDriver {
         IReimbursemnetDao rd = new ReimbursementDao();
 
         Employee e = new Employee(2,"username", "password", "firstName", "lastName", "email", 1);
-        //ed.createEmployee(e);
+        ed.createEmployee(e);
 
         DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
         Date d1 = new Date(System.currentTimeMillis());
-        Reimbursement r = new Reimbursement(500.57,d1, "FOOD", e, 3, 3);
+        Reimbursement r = new Reimbursement(500.57,d1, "FOOD", ed.readEmployeeByEmail(e.getEmail()).getEmpolyeeId(), 3, 3);
         rd.createReimbursement(r);
-        System.out.print(r.toString());
+        System.out.println(r.toString());
         r.setReimbursementStatus(1);
-        r.setReimbursementResolver(e);
+        r.setReimbursementResolver(e.getEmpolyeeId());
         r.setResolvedDate(d1);
-        System.out.print(r.toString());
+        System.out.println(r.toString());
         rd.updateReimbursement(r);
     }
 }

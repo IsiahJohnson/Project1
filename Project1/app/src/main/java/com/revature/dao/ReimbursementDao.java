@@ -3,6 +3,7 @@ package com.revature.dao;
 import com.revature.models.Employee;
 import com.revature.models.Reimbursement;
 import com.revature.utils.ConnectionSingleton;
+import com.revature.dao.EmployeeDao;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class ReimbursementDao implements IReimbursemnetDao {
             p.setDouble(1, r.getAmount());
             p.setDate(2, (Date) r.getSubmittedDate());
             p.setString(3, r.getDescription());
-            p.setInt(4, r.getReimbursementAuthor().getEmpolyeeId());
+            p.setInt(4, r.getReimbursementAuthor());
             p.setInt(5, r.getReimbursementStatus());
             p.setInt(6, r.getReimbursementType() );
 
@@ -65,7 +66,7 @@ public class ReimbursementDao implements IReimbursemnetDao {
             while(rs.next()){
                 Employee e = new Employee(rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getInt(10));
 
-                Reimbursement r = new Reimbursement(rs.getDouble(1), rs.getDate(2), rs.getDate(3), rs.getString(4), e);
+                Reimbursement r = new Reimbursement(rs.getDouble(1), rs.getDate(2), rs.getDate(3), rs.getString(4), e.getEmpolyeeId());
 
                 aList.add(r);
             }
@@ -106,21 +107,21 @@ public class ReimbursementDao implements IReimbursemnetDao {
         Connection c = cs.getConnection();
         String sql = "UPDATE reimbursement " +
                 "SET amount = ?, " + //index 1
-                "submitted_date = ?, " + //index 2
-                "resolved_date = ?, " + //index 3
-                "description = ? " + //index 4s
-                "reimbursement_resolver = ?" + //index 5
-                "reimbursement_status = ?"; //index 6
+                "resolved_date = ?, " + //index 2
+                "description = ? " + //index 3
+                "reimbursement_resolver = ?" + //index 4
+                "reimbursement_status = ?" + //index 5
+                "where reimbursement_id = ?"; //index 6
 
         try{
             PreparedStatement p = c.prepareStatement(sql);
 
             p.setDouble(1, r.getAmount());
-            p.setDate(2, r.getSubmittedDate());
-            p.setDate(3, r.getResolvedDate());
-            p.setString(4, r.getDescription());
-            p.setInt(5, r.getReimbursementResolver().getEmpolyeeId());
-            p.setInt(6, r.getReimbursementStatus());
+            p.setDate(2, r.getResolvedDate());
+            p.setString(3, r.getDescription());
+            p.setInt(4, r.getReimbursementResolver());
+            p.setInt(5, r.getReimbursementStatus());
+            p.setInt(6, r.getReimbursementId());
 
             p.execute();
 

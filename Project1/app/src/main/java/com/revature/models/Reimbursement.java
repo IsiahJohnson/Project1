@@ -9,8 +9,8 @@ public class Reimbursement {
     private Date submittedDate;
     private Date resolvedDate;
     private String description;
-    private Employee reimbursementAuthor;
-    private Employee reimbursementResolver;
+    private int reimbursementAuthor;
+    private int reimbursementResolver;
     private int reimbursementStatus;
     private int reimbursementType;
 
@@ -18,7 +18,7 @@ public class Reimbursement {
 
     }
 
-    public Reimbursement(double amount, Date submittedDate, String description, Employee reimbursementAuthor, int reimbursementStatus, int reimbursementType) {
+    public Reimbursement(double amount, Date submittedDate, String description, int reimbursementAuthor, int reimbursementStatus, int reimbursementType) {
         this.amount = amount;
         this.submittedDate = submittedDate;
         this.description = description;
@@ -27,7 +27,7 @@ public class Reimbursement {
         this.reimbursementType = reimbursementType;
     }
 
-    public Reimbursement(double amount, Date submittedDate, Date resolvedDate, String description, Employee reimbursementAuthor) {
+    public Reimbursement(double amount, Date submittedDate, Date resolvedDate, String description, int reimbursementAuthor) {
         this.amount = amount;
         this.submittedDate = submittedDate;
         this.resolvedDate = resolvedDate;
@@ -36,14 +36,14 @@ public class Reimbursement {
     }
 
 
-    public Reimbursement(double amount, Date submittedDate, String description, Employee reimbursementAuthor) {
+    public Reimbursement(double amount, Date submittedDate, String description, int reimbursementAuthor) {
         this.amount = amount;
         this.submittedDate = submittedDate;
         this.description = description;
         this.reimbursementAuthor = reimbursementAuthor;
     }
 
-    public Reimbursement(double amount, Date submittedDate, String description, Employee reimbursementAuthor, int reimbursementType) {
+    public Reimbursement(double amount, Date submittedDate, String description, int reimbursementAuthor, int reimbursementType) {
         this.amount = amount;
         this.submittedDate = submittedDate;
         this.description = description;
@@ -90,19 +90,19 @@ public class Reimbursement {
         this.description = description;
     }
 
-    public Employee getReimbursementAuthor() {
+    public int getReimbursementAuthor() {
         return reimbursementAuthor;
     }
 
-    public void setReimbursementAuthor(Employee reimbursementAuthor) {
+    public void setReimbursementAuthor(int reimbursementAuthor) {
         this.reimbursementAuthor = reimbursementAuthor;
     }
 
-    public Employee getReimbursementResolver() {
+    public int getReimbursementResolver() {
         return reimbursementResolver;
     }
 
-    public void setReimbursementResolver(Employee reimbursementResolver) {
+    public void setReimbursementResolver(int reimbursementResolver) {
         this.reimbursementResolver = reimbursementResolver;
     }
 
@@ -122,7 +122,7 @@ public class Reimbursement {
         this.reimbursementType = reimbursementType;
     }
 
-    @java.lang.Override
+    @Override
     public java.lang.String toString() {
         return "Reimbursement{" +
                 "amount=" + amount +
