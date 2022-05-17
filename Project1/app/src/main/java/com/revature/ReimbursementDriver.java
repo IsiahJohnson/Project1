@@ -19,7 +19,7 @@ public class ReimbursementDriver {
         IReimbursemnetDao rd = new ReimbursementDao();
 
         Employee e = new Employee(2,"username", "password", "firstName", "lastName", "email", 1);
-        //ed.createEmployee(e);
+        ed.createEmployee(e);
 
         DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
         Date d1 = new Date(System.currentTimeMillis());
