@@ -45,7 +45,7 @@ public class EmployeeDao implements IEmployeeDao {
 
             Employee loggedIn = null;
             while (rs.next()) {
-                loggedIn = new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6));
+                loggedIn = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
             }
 
             return loggedIn;
@@ -75,7 +75,7 @@ public class EmployeeDao implements IEmployeeDao {
             p.setString(2, em.getLastName());
             p.setString(3, em.getEmail());
             p.setString(4, em.getPassword());
-            p.setInt(5, em.getEmpolyeeId());
+            p.setInt(5, em.getEmployeeId());
             p.setInt(6, em.getUserRole());
 
             p.execute();
@@ -97,7 +97,7 @@ public class EmployeeDao implements IEmployeeDao {
         try{
             PreparedStatement p = c.prepareStatement(sql);
 
-            p.setInt(1, em.getEmpolyeeId());
+            p.setInt(1, em.getEmployeeId());
 
             p.execute();
         }catch(SQLException e){
