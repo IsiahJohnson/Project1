@@ -61,3 +61,12 @@ values (200.25, '2022-02-11', 'desc', 4, 2 );
 
 insert into employee (employee_id, first_name,last_name, email, password, user_role) 
 values (4,'Ethan', 'McCill', 'email.email.com', 'pass', 1);
+
+create or replace function get_reimbursement_by_employee(e_id int)
+returns refcursor as $$
+declare ref refcursor;
+begin
+	open ref for select * from reimbursement r inner join employee e on r.reimbursement_author = e.employee_id where r.reimbursement_author = e_id;
+	return ref;
+end;
+$$ language 'plpgsql';
