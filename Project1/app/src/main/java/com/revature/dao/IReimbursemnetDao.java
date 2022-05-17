@@ -12,6 +12,10 @@ public interface IReimbursemnetDao {
 
     public List<Reimbursement> readAllReimbursement();
 
+    public List<Reimbursement> getPendingReimbursement(int id);
+
+    public List<Reimbursement> getReolvedReibursement(int id);
+
     public List<Reimbursement> readReimbursementByUser(int id);
 
 

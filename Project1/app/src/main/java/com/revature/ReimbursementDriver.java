@@ -26,10 +26,9 @@ public class ReimbursementDriver {
         IEmployeeDao ed = new EmployeeDao();
         IReimbursemnetDao rd = new ReimbursementDao();
 
-<<<<<<< HEAD
         Employee e = new Employee(2,"username", "password", "firstName", "lastName", "email", 1);
         ed.createEmployee(e);
-=======
+
         EmployeeService es = new EmployeeService(ed);
         ReimbursementService rs = new ReimbursementService(rd);
 
@@ -49,7 +48,9 @@ public class ReimbursementDriver {
             });
             path("reimbursement", () -> {
                 post("/create", rc.handleCreate);
-                //get("/", rc.handleGetUserPosts);
+                get("/", rc.handleGetReimbursement);
+                get("/pending", rc.handleGetPendingReimbursement);
+                get("/resolved", rc.handleGetResolvedReimbursement);
             });
         });
 
@@ -59,7 +60,6 @@ public class ReimbursementDriver {
 
         /*Employee e = new Employee(2,"username", "password", "firstName", "lastName", "email", 1);
         //ed.createEmployee(e);
->>>>>>> cbacf33da00468645ca0eb4085b0e523a9583e43
 
         DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
         Date d1 = new Date(System.currentTimeMillis());

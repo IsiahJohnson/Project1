@@ -20,6 +20,18 @@ public class ReimbursementService {
         rd. createReimbursement(r);
     }
 
+    public List <Reimbursement> getReimbursementByUser(int id){
+        return rd.readReimbursementByUser(id);
+    }
+
+    public List <Reimbursement> getPendingReimbursement(int id) {
+        return rd.getPendingReimbursement(id);
+    }
+
+    public List <Reimbursement> getResolvedReimbursement(int id) {
+        return rd.getReolvedReibursement(id);
+    }
+
     public Reimbursement updateReimbursementInfo(Reimbursement r){
         return rd.updateReimbursement(r);
     }
