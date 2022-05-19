@@ -18,6 +18,8 @@ public interface IReimbursemnetDao {
 
     public List<Reimbursement> readReimbursementByUser(int id);
 
+    public Reimbursement getReimbursementById(int id);
+
 
     public Reimbursement updateReimbursement(Reimbursement r);
 }

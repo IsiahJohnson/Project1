@@ -173,31 +173,47 @@ public class ReimbursementDao implements IReimbursemnetDao {
     }
 
     @Override
+    public Reimbursement getReimbursementById(int id) {
+        Connection c = cs.getConnection();
+        String sql ="SELECT * FROM reimbursement WHERE reimbursement_id = ?";
+
+        try {
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            Reimbursement r = null;
+            while(rs.next()){
+                r = new Reimbursement(rs.getInt(1), rs.getDouble(2), rs.getDate(3), rs.getDate(4),rs.getString(5), rs.getInt(6),rs.getInt(7),rs.getInt(8),rs.getInt(9));
+            }
+
+            return r;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public Reimbursement updateReimbursement(Reimbursement r) {
         Connection c = cs.getConnection();
         String sql = "UPDATE reimbursement " +
                 "SET amount = ?, " + //index 1
-
                 "resolved_date = ?, " + //index 2
                 "description = ?, " + //index 3
                 "reimbursement_resolver = ?, " + //index 4
                 "reimbursement_status = ? " + //index 5
-                "WHERE reimbursement_type = ? "; //index 6
+                "WHERE reimbursement_id = ? "; //index 6
 
         try{
             PreparedStatement p = c.prepareStatement(sql);
-
 
             p.setDouble(1, r.getAmount());
             p.setDate(2, r.getResolvedDate());
             p.setString(3, r.getDescription());
 
             p.setInt(4, r.getReimbursementResolver());
-            p.setInt(5, r.getReimbursementStatus());
-            p.setInt(6, r.getReimbursementType());
-
-            p.setInt(4, r.getReimbursementResolver());
-            System.out.println(r.getReimbursementResolver());
             p.setInt(5, r.getReimbursementStatus());
             p.setInt(6, r.getReimbursementId());
 

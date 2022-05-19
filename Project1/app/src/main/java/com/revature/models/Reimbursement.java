@@ -30,6 +30,16 @@ public class Reimbursement {
         this.reimbursementType = reimbursementType;
     }
 
+    //controller update
+    public Reimbursement(double amount, Date resolvedDate, String description, int reimbursementResolver, int reimbursementStatus) {
+        this.amount = amount;
+        this.resolvedDate = resolvedDate;
+        this.description = description;
+        this.reimbursementResolver = reimbursementResolver;
+        this.reimbursementStatus = reimbursementStatus;
+    }
+
+
     public Reimbursement(double amount, Date submittedDate, String description, int reimbursementAuthor, int reimbursementStatus, int reimbursementType) {
         this.amount = amount;
         this.submittedDate = submittedDate;
@@ -53,14 +63,6 @@ public class Reimbursement {
         this.submittedDate = submittedDate;
         this.description = description;
         this.reimbursementAuthor = reimbursementAuthor;
-    }
-
-    public Reimbursement(double amount, Date submittedDate, String description, int reimbursementAuthor, int reimbursementType) {
-        this.amount = amount;
-        this.submittedDate = submittedDate;
-        this.description = description;
-        this.reimbursementAuthor = reimbursementAuthor;
-        this.reimbursementType = reimbursementType;
     }
 
     public int getReimbursementId() {

@@ -42,6 +42,11 @@ public class EmployeeController {
         }
     };
 
+    public Handler handleLogout = (ctx) -> {
+        ctx.req.getSession().invalidate();
+        ctx.result("Employee logged out");
+    };
+
     public Handler handleUpdateEmployee = (ctx) -> {
         Employee e = om.readValue(ctx.body(), Employee.class);
 
