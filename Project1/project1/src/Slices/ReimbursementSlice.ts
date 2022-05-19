@@ -161,18 +161,3 @@ export const ReimbursementSlice = createSlice({
 export const {toggleError} = ReimbursementSlice.actions;
 
 export default ReimbursementSlice.reducer;
-
-/*
-//If we had normal actions and reducers we would export them like this
-
-reimbursements
-
-path("reimbursement", () -> {
-                post("/create", rc.handleCreate);
-                get("/", rc.handleGetReimbursement);
-                get("/pending", rc.handleGetPendingReimbursement);
-                get("/resolved", rc.handleGetResolvedReimbursement);
-                put("/update/{id}", rc.handleUpdateReimbursement);
-            });
-
-*/
