@@ -1,6 +1,6 @@
 package com.revature.models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Reimbursement {
 
@@ -9,24 +9,37 @@ public class Reimbursement {
     private Date submittedDate;
     private Date resolvedDate;
     private String description;
-    private Employee reimbursementAuthor;
-    private Employee reimbursementResolver;
+    private int reimbursementAuthor;
+    private int reimbursementResolver;
     private int reimbursementStatus;
     private int reimbursementType;
 
     public Reimbursement(){
 
     }
-    public Reimbursement(int reimbursementId, double amount, Date submittedDate, Date resolvedDate, String description, Employee reimbursementAuthor) {
+
+    public Reimbursement(int reimbursementId, double amount, Date submittedDate, Date resolvedDate, String description, int reimbursementAuthor, int reimbursementResolver, int reimbursementStatus, int reimbursementType) {
         this.reimbursementId = reimbursementId;
         this.amount = amount;
         this.submittedDate = submittedDate;
         this.resolvedDate = resolvedDate;
         this.description = description;
         this.reimbursementAuthor = reimbursementAuthor;
+        this.reimbursementResolver = reimbursementResolver;
+        this.reimbursementStatus = reimbursementStatus;
+        this.reimbursementType = reimbursementType;
     }
 
-    public Reimbursement(double amount, Date submittedDate, Date resolvedDate, String description, Employee reimbursementAuthor) {
+    public Reimbursement(double amount, Date submittedDate, String description, int reimbursementAuthor, int reimbursementStatus, int reimbursementType) {
+        this.amount = amount;
+        this.submittedDate = submittedDate;
+        this.description = description;
+        this.reimbursementAuthor = reimbursementAuthor;
+        this.reimbursementStatus = reimbursementStatus;
+        this.reimbursementType = reimbursementType;
+    }
+
+    public Reimbursement(double amount, Date submittedDate, Date resolvedDate, String description, int reimbursementAuthor) {
         this.amount = amount;
         this.submittedDate = submittedDate;
         this.resolvedDate = resolvedDate;
@@ -35,14 +48,14 @@ public class Reimbursement {
     }
 
 
-    public Reimbursement(double amount, Date submittedDate, String description, Employee reimbursementAuthor) {
+    public Reimbursement(double amount, Date submittedDate, String description, int reimbursementAuthor) {
         this.amount = amount;
         this.submittedDate = submittedDate;
         this.description = description;
         this.reimbursementAuthor = reimbursementAuthor;
     }
 
-    public Reimbursement(double amount, Date submittedDate, String description, Employee reimbursementAuthor, int reimbursementType) {
+    public Reimbursement(double amount, Date submittedDate, String description, int reimbursementAuthor, int reimbursementType) {
         this.amount = amount;
         this.submittedDate = submittedDate;
         this.description = description;
@@ -89,19 +102,19 @@ public class Reimbursement {
         this.description = description;
     }
 
-    public Employee getReimbursementAuthor() {
+    public int getReimbursementAuthor() {
         return reimbursementAuthor;
     }
 
-    public void setReimbursementAuthor(Employee reimbursementAuthor) {
+    public void setReimbursementAuthor(int reimbursementAuthor) {
         this.reimbursementAuthor = reimbursementAuthor;
     }
 
-    public Employee getReimbursementResolver() {
+    public int getReimbursementResolver() {
         return reimbursementResolver;
     }
 
-    public void setReimbursementResolver(Employee reimbursementResolver) {
+    public void setReimbursementResolver(int reimbursementResolver) {
         this.reimbursementResolver = reimbursementResolver;
     }
 
@@ -121,10 +134,11 @@ public class Reimbursement {
         this.reimbursementType = reimbursementType;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "Reimbursement{" +
-                "amount=" + amount +
+                "reimbursementId=" + reimbursementId +
+                ", amount=" + amount +
                 ", submittedDate=" + submittedDate +
                 ", resolvedDate=" + resolvedDate +
                 ", description='" + description + '\'' +

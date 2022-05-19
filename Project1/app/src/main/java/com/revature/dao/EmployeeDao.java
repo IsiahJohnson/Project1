@@ -15,7 +15,7 @@ public class EmployeeDao implements IEmployeeDao {
 
         Connection c = cs.getConnection();
 
-        String sql = "insert into employee (first_name, last_name, email, password, role_id) values " +
+        String sql = "insert into employee (username, first_name, last_name, email, password, user_role) values " +
                 "('"+ em.getUsername() + "','" + em.getFirstName() + "','" + em.getLastName() + "','" + em.getEmail() + "','" + em.getPassword() + "','" + em.getUserRole() + "')";
 
         try {
@@ -45,7 +45,7 @@ public class EmployeeDao implements IEmployeeDao {
 
             Employee loggedIn = null;
             while (rs.next()) {
-                loggedIn = new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6));
+                loggedIn = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
             }
 
             return loggedIn;
@@ -66,7 +66,7 @@ public class EmployeeDao implements IEmployeeDao {
                 "email = ?, " + //index 3
                 "password = ? " + //index 4s
                 "WHERE employee_id = ?" + //index 5
-                "role_id = ?"; //index 6
+                "user_role = ?"; //index 6
 
         try{
             PreparedStatement p = c.prepareStatement(sql);
@@ -75,7 +75,7 @@ public class EmployeeDao implements IEmployeeDao {
             p.setString(2, em.getLastName());
             p.setString(3, em.getEmail());
             p.setString(4, em.getPassword());
-            p.setInt(5, em.getEmpolyeeId());
+            p.setInt(5, em.getEmployeeId());
             p.setInt(6, em.getUserRole());
 
             p.execute();
@@ -97,7 +97,7 @@ public class EmployeeDao implements IEmployeeDao {
         try{
             PreparedStatement p = c.prepareStatement(sql);
 
-            p.setInt(1, em.getEmpolyeeId());
+            p.setInt(1, em.getEmployeeId());
 
             p.execute();
         }catch(SQLException e){
