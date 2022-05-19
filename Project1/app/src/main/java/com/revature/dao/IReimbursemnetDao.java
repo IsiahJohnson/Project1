@@ -1,8 +1,6 @@
 package com.revature.dao;
 
 import com.revature.models.Reimbursement;
-import com.revature.models.ReimbursementStatus;
-import com.revature.models.ReimbursementType;
 
 import java.util.List;
 

@@ -63,8 +63,14 @@ public class EmployeeController {
         ctx.result("Employee deleted");
     };
 
+    public Handler handleGetEmployee = (ctx) -> {
+        int userId = Integer.parseInt(ctx.pathParam("id"));
 
+        Employee u = es.getEmployeeById(userId);
 
+        ctx.result(om.writeValueAsString(u));
+
+    };
 
 
 }

@@ -1,13 +1,18 @@
 CREATE TABLE if not exists employee (
-employee_id int primary key not null,
+employee_id int primary key not null generated always as identity,
 username varchar(64),
 password varchar(64),
 first_name varchar(64),
 last_name varchar(64),
 email varchar(100),
-user_role int  references user_roles(role_id)
+user_role int references user_roles(role_id) not null
 );
 
+drop table employee cascade;
+
+insert into employee (employee_id, first_name,last_name, email, password, role_id) values
+	(4,'Ethan', 'McCill', 'email.email.com', 'pass', 1);
+ssssss
 
 create table if not exists reimbursement (
 reimbursement_id int primary key not null generated always as identity,
@@ -21,8 +26,12 @@ reimbursement_status int references reimbursement_status(status_id),
 reimbursement_type int references reimbursement_type(type_id)
 );
 
-drop table reimbursement cascade;
+insert into reimbursement (amount, submitted_date, description, reimbursement_author, reimbursement_type) values 
+	(200.25, '2022-02-11', 'desc', 4, 2 );
 
+
+
+drop table reimbursement cascade;
 /*the reimbursement table must reference the users table*/
 
 create table if not exists reimbursement_status (
@@ -36,11 +45,11 @@ type varchar(30)
 );
 
 create table if not exists user_roles (
-role_id int primary key not NULL unique,
+role_id int primary key,
 role boolean
 );
 
-
+drop table user_roles cascade;
 /*
 *we have created our main 5 tables, tables with "lu" in front are referenced as LOOKUP tables,
 *therefore, we need to create data into these 3 LOOKUP tables
@@ -56,11 +65,14 @@ values(1, 'LODGING'), (2, 'TRAVEL'), (3, 'FOOD'), (4, 'OTHER');
 INSERT INTO user_roles (role_id, role) 
 values(1, true), (2, false);
 
-insert into reimbursement (amount, submitted_date, description, reimbursement_author, reimbursement_type) 
-values (200.25, '2022-02-11', 'desc', 4, 2 );
-
-insert into employee (employee_id, first_name,last_name, email, password, user_role) 
-values (4,'Ethan', 'McCill', 'email.email.com', 'pass', 1);
+create or replace function get_reimbursement_by_employee(e_id int)
+returns refcursor as $$
+declare ref refcursor;
+begin
+	open ref for select * from reimbursement r inner join employee e on r.reimbursement_author = e.employee_id where r.reimbursement_author = e_id;
+	return ref;
+end;
+$$ language 'plpgsql';
 
 create or replace function get_reimbursement_by_employee(e_id int)
 returns refcursor as $$

@@ -39,6 +39,8 @@ public class ReimbursementDriver {
             config.enableCorsForAllOrigins();
         });
 
+        server.before(ctx -> ctx.header("Access-Control-Allow-Credentials", "true"));
+        server.before(ctx -> ctx.header("Access-Control-Expose-Headers", "*"));
         server.routes(()-> {
             path("users", () -> {
                 post("/register", ec.handleRegister);
@@ -46,9 +48,10 @@ public class ReimbursementDriver {
                 put("/", ec.handleUpdateEmployee);
                 delete("/{id}", ec.handleDeleteEmployee);
                 get("/logout", ec.handleLogout);
+                get("/get/{id}", ec.handleGetEmployee);
             });
             path("reimbursement", () -> {
-                post("/create", rc.handleCreate);
+                post("/", rc.handleCreate);
                 get("/", rc.handleGetReimbursement);
                 get("/pending", rc.handleGetPendingReimbursement);
                 get("/resolved", rc.handleGetResolvedReimbursement);
@@ -57,20 +60,6 @@ public class ReimbursementDriver {
         });
 
         server.start(8000);
-
-
-        /*
-        Employee e = new Employee(2,"username", "password", "firstName", "lastName", "email", 1);
-        //ed.createEmployee(e);
-
-        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-
-        System.out.println(r.toString());
-
-        List<Reimbursement> lr = new ArrayList<>();
-        lr = rd.readAllReimbursement();
-        System.out.println(lr);
-        */
 
 
     }

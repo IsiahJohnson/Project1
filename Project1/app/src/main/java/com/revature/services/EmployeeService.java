@@ -46,5 +46,7 @@ public class EmployeeService {
     }
 
 
+    public Employee getEmployeeById(int id) { return ed.readEmployeeById(id);}
 
 }
+

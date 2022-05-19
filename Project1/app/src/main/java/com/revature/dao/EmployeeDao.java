@@ -57,6 +57,29 @@ public class EmployeeDao implements IEmployeeDao {
     }
 
     @Override
+    public Employee readEmployeeById(int id) {
+        Connection c = cs.getConnection();
+        String sql ="SELECT * FROM employee WHERE user_id = ?";
+
+        try {
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            Employee loggedIn = null;
+            while(rs.next()){
+                loggedIn = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
+            }
+
+            return loggedIn;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public Employee updateEmployee(Employee em) {
 
         Connection c = cs.getConnection();
@@ -107,4 +130,4 @@ public class EmployeeDao implements IEmployeeDao {
 
 
 
-    }
+}
