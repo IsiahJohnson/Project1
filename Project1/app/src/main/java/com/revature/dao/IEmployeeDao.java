@@ -17,4 +17,6 @@ public interface IEmployeeDao {
 
     //Delete
     public void deleteEmployee(Employee e);
+
+    Employee readEmployeeById(int id);
 }

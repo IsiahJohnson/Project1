@@ -41,7 +41,22 @@ public class ReimbursementController {
         ctx.result(om.writeValueAsString(rs.getReimbursementByUser(reimburserId)));
     }
 
-};
+    };
+
+    public Handler handleUpdateReimbursement = (ctx) -> {
+        if(ctx.req.getSession().getAttribute("id") == null){
+            ctx.status(401);
+            ctx.result("You must login to update requests");
+        } else {
+            Reimbursement r = om.readValue(ctx.body(), Reimbursement.class);
+            int id = Integer.parseInt(ctx.pathParam("id"));
+            r.setReimbursementId(id);
+            ctx.result(om.writeValueAsString(rs.updateReimbursementInfo(r)));
+        }
+
+
+    };
+
 
     public Handler handleGetPendingReimbursement = (ctx) -> {
         if(ctx.req.getSession().getAttribute("id") == null){

@@ -1,7 +1,7 @@
 package com.revature.models;
 
 public class Employee {
-    private int empolyeeId;
+    private int employeeId;
 
     private String username;
     private String password;
@@ -25,8 +25,8 @@ public class Employee {
         this.userRole = userRole;
     }
 
-    public Employee(int empolyeeId, String username, String password, String firstName, String lastName, String email, int userRole) {
-        this.empolyeeId = empolyeeId;
+    public Employee(int employeeId, String username, String password, String firstName, String lastName, String email, int userRole) {
+        this.employeeId = employeeId;
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -35,8 +35,8 @@ public class Employee {
         this.userRole = userRole;
     }
 
-    public Employee(int empolyeeId, String username, String password, String firstName, String lastName, String email) {
-        this.empolyeeId = empolyeeId;
+    public Employee(int employeeId, String username, String password, String firstName, String lastName, String email) {
+        this.employeeId = employeeId;
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -45,11 +45,11 @@ public class Employee {
     }
 
     public int getEmployeeId() {
-        return empolyeeId;
+        return employeeId;
     }
 
     public void setEmployeeId(int empolyeeId) {
-        this.empolyeeId = empolyeeId;
+        this.employeeId = empolyeeId;
     }
 
     public String getUsername() {
@@ -103,7 +103,7 @@ public class Employee {
     @java.lang.Override
     public java.lang.String toString() {
         return "Employee{" +
-                "empolyeeId=" + empolyeeId +
+                "empolyeeId=" + employeeId +
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

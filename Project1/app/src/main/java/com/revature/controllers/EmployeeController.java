@@ -42,6 +42,11 @@ public class EmployeeController {
         }
     };
 
+    public Handler handleLogout = (ctx) -> {
+        ctx.req.getSession().invalidate();
+        ctx.result("Employee logged out");
+    };
+
     public Handler handleUpdateEmployee = (ctx) -> {
         Employee e = om.readValue(ctx.body(), Employee.class);
 
@@ -58,8 +63,14 @@ public class EmployeeController {
         ctx.result("Employee deleted");
     };
 
+    public Handler handleGetEmployee = (ctx) -> {
+        int userId = Integer.parseInt(ctx.pathParam("id"));
 
+        Employee u = es.getEmployeeById(userId);
 
+        ctx.result(om.writeValueAsString(u));
+
+    };
 
 
 }
