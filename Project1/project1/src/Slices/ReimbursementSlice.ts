@@ -17,10 +17,10 @@ const initialReimbursementState: ReimbursementSliceState = {
 
 export const getReimbursements = createAsyncThunk(
     "reimbursements/get",
-    async (thunkAPI) => {
+    async (id:number,thunkAPI) => {
         try{
             axios.defaults.withCredentials = true;
-            const res = await axios.get("http://localhost:8000/reimbursement");
+            const res = await axios.get("http://localhost:8000/reimbursement/$(id)");
   
             return res.data;
         } catch (e){

@@ -52,7 +52,7 @@ public class ReimbursementDriver {
             });
             path("reimbursement", () -> {
                 post("/", rc.handleCreate);
-                get("/", rc.handleGetReimbursement);
+                get("/{id}", rc.handleGetReimbursement);
                 get("/pending", rc.handleGetPendingReimbursement);
                 get("/resolved", rc.handleGetResolvedReimbursement);
                 put("/update/{id}", rc.handleUpdateReimbursement);

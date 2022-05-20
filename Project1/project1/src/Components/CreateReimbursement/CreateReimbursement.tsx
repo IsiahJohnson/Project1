@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../Store';
 import { createReimbursement } from '../../Slices/ReimbursementSlice';
 
-import pic from '../../deafultpic.jpg';
 import { IReimbursement } from '../../Interfaces/IReimbursement';
 
 //import './CreateReimbursement.css';
@@ -60,7 +59,6 @@ export const CreateReimbursement: React.FC = () => {
     return(
         <div className="create-container">
             <div className="content-container">
-                <img className="create-profile-pic" src={pic} />
                 <textarea className="description" onChange={handleChange} placeholder="What for?" maxLength={256}></textarea>
                 <textarea className="amount" onChange={handleChange} placeholder="Enter amount" maxLength={256}></textarea>
                 <label>

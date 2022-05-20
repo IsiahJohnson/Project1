@@ -20,7 +20,7 @@ public class ReimbursementController {
             ctx.status(401);
             ctx.result("You must login to create reimbursements");
         } else {
-            int reimburserId = Integer.parseInt((String) ctx.req.getSession().getAttribute("id"));
+            int reimburserId = Integer.parseInt((ctx.pathParam("id")));
 
             ReimburseObject ro = om.readValue(ctx.body(), ReimburseObject.class);
             System.out.println(ro);
@@ -36,7 +36,7 @@ public class ReimbursementController {
             ctx.status(401);
             ctx.result("You must login to view requests");
     } else {
-        int reimburserId = Integer.parseInt((String) ctx.req.getSession().getAttribute("id"));
+        int reimburserId = Integer.parseInt((ctx.pathParam("id")));
 
         ctx.result(om.writeValueAsString(rs.getReimbursementByUser(reimburserId)));
     }

@@ -11,10 +11,10 @@ import { CreateReimbursement } from '../../Components/CreateReimbursement/Create
 import { Loading } from '../../Components/Loading/Loading';
 import { IReimbursement } from '../../Interfaces/IReimbursement';
 
-import './FeedPage.css';
+//import './ReimbursementPage.css';
 import { Reimbursement } from '../../Components/Reimbursement/Reimbursement';
 
-export const FeedPage: React.FC = () => {
+export const ReimbursementPage: React.FC = () => {
 
     const userInfo = useSelector((state:RootState) => state.user);
     const reimbursements = useSelector((state:RootState) => state.reimbursements);
@@ -28,7 +28,7 @@ export const FeedPage: React.FC = () => {
         }
         //If the user IS logged in, but we have not gotten their reimbursements yet
         else if(userInfo.user && !reimbursements.reimbursements){
-            dispatch(getReimbursements());
+            dispatch(getReimbursements(userInfo.user.userId));
         }
 
         console.log("Userstate: ", userInfo, "Reimbursements: ", reimbursements);

@@ -7,9 +7,7 @@ import { logout } from '../../Slices/UserSlice';
 import { AppDispatch } from '../../Store';
 import { clearReimbursements } from '../../Slices/ReimbursementSlice';
 
-import defaultImage from '../../deafultpic.jpg';
-
-import './Navbar.css';
+//import './Navbar.css';
 import { RootState } from '../../Store';
 
 export const Navbar: React.FC = () => {
@@ -25,7 +23,6 @@ export const Navbar: React.FC = () => {
 
     return(
         <nav className="navbar">
-            <img className="profile-pic" src={defaultImage} />
             <ul className='nav-menu'>
                 <li className="nav-item">
                     <Link to={`/user/${user?.userId}`} className="nav-link">Profile</Link>
