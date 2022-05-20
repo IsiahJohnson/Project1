@@ -9,7 +9,7 @@ export const store = configureStore({
     reducer: {
         //Are the different reducers for modifying our state
         user: userReducer,
-        posts: reimbursementReducer
+        reimbursements: reimbursementReducer
     }
 });
 

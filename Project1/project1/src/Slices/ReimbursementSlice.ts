@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk} from  "@reduxjs/toolkit";
 import axios from "axios";
-import {IReimbursement} from "../Interfaces/IReumbursement";
+import {IReimbursement} from "../Interfaces/IReimbursement";
 
 
 interface ReimbursementSliceState{
@@ -91,8 +91,8 @@ export const ReimbursementSlice = createSlice({
     name: "reimbursement",
     initialState: initialReimbursementState,
     reducers: {
-        toggleError : (state) => {
-            state.error = !state.error;
+        clearReimbursements : (state) => {
+            state.reimbursements = undefined;
         }
     },
     extraReducers: (builder) => {
@@ -158,6 +158,6 @@ export const ReimbursementSlice = createSlice({
         }
     });
 
-export const {toggleError} = ReimbursementSlice.actions;
+export const {clearReimbursements} = ReimbursementSlice.actions;
 
 export default ReimbursementSlice.reducer;
