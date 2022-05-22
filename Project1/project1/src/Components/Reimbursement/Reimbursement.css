@@ -1,0 +1,37 @@
+:root {
+    --bg: #2D2E2E;
+    --dark: #0F0F0F;
+    --btn-blue: #46B1C9;
+    --accent: #23CE6B;
+    --text-white: #FBFBFB;
+}
+
+.reimbursements{
+    width: 35%;
+    display: flex;
+    height: fit-content;
+    flex-direction: column;
+    padding: 25px;
+    border: 2px solid var(--dark);
+    color: var(--text-white);
+}
+
+.reimbursement-profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.amount {
+    margin-left: 15px;
+}
+
+.reimbursement-date-submitted {
+    margin-left: 15px;
+}
+
+.reimbursement-description {
+    margin-left: 75px;
+    margin-top: 15px;
+}
